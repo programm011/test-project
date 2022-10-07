@@ -16,9 +16,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::match(['POST', 'GET'], 'login', [AuthController::class, 'login'])
-    ->name('login')->withoutMiddleware('auth:web');
+    ->name('login')->withoutMiddleware('auth:web')->middleware('guest');
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::redirect('/', 'products')->name('home');
+Route::redirect('/', '/products')->name('home');
 
 Route::resource('products', ProductsController::class);
+
+Route::get('logs', function () {
+    return \App\Models\Logger::all();
+})->middleware(['role:admin']);

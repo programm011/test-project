@@ -1,13 +1,13 @@
 <td class="align-middle">
-    @can('admin')
+    @if(auth()->user()->hasRole('admin'))
         <a href="{{route("$route.edit",$id)}}" class="badge badge-primary btn-sm">
             <i class="fas fa-pencil-alt"></i>
         </a>
-    @endcan
+    @endif
     <a href="{{route("$route.show",$id)}}" class="badge badge-info">
         <i class="fas fa-eye"></i>
     </a>
-    @can('admin')
+    @if(auth()->user()->hasRole('admin'))
         <form action="{{route("$route.destroy",$id)}}" class="d-inline" method="post"
               onsubmit="return confirm('{{__('common.are_you_sure')}}')">
             @csrf
