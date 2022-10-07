@@ -18,5 +18,6 @@ class RolesTableSeeder extends Seeder
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         Role::query()->create(['name' => 'admin']);
+        Role::query()->create(['name' => 'user']);
     }
 }
