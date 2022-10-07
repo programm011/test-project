@@ -26,12 +26,6 @@
                                     @foreach($column as $val)
                                         <th>{{ucfirst($val)}}</th>
                                     @endforeach
-                                @elseif($key == 'status')
-                                    @foreach($column as $val)
-                                        <th>{{ucfirst($val)}}</th>
-                                    @endforeach
-                                @elseif($key == 'is_free')
-                                    <th>{{__('attributes.is_free')}}</th>
                                 @else
                                     <th>{{(ucfirst($column))}}</th>
                                 @endif
@@ -62,22 +56,6 @@
                                         @foreach($column as $relation)
                                             <td class="align-middle">
                                                 <x-table.resource :resource="$item->{$relation}"/>
-                                            </td>
-                                        @endforeach
-                                    @elseif($key == 'status')
-                                        @foreach($column as $relation)
-                                            <td class="align-middle">
-                                                <div class="p-1">
-                                                    <x-status :status="$item->{$relation}"/>
-                                                </div>
-                                            </td>
-                                        @endforeach
-                                    @elseif($key == 'is_free')
-                                        @foreach($column as $relation)
-                                            <td class="align-middle">
-                                                <div class="p-1">
-                                                    <x-forms.is-free :status="$item->{$relation}"/>
-                                                </div>
                                             </td>
                                         @endforeach
                                     @else

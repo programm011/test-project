@@ -15,7 +15,7 @@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="userdropdown"
                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{auth()->user()->login}}
+                {{auth()->user()->username}}
             </a>
             <div class="dropdown-menu" aria-labelledby="userdropdown">
                 <a class="dropdown-item" href="#">Profile</a>

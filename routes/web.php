@@ -19,4 +19,6 @@ Route::match(['POST', 'GET'], 'login', [AuthController::class, 'login'])
     ->name('login')->withoutMiddleware('auth:web');
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/', [ProductsController::class, 'index'])->name('home');
+Route::redirect('/', 'products')->name('home');
+
+Route::resource('products', ProductsController::class);
