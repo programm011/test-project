@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{__('auth.login.login')}}</title>
+    <title>{{__('auth.login')}}</title>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset('assets/plugins/fontawesome-free/css/all.min.css')}}">
@@ -21,8 +21,8 @@
                 @csrf
                 @method('POST')
                 <div class="input-group mb-3">
-                    <input type="text" name="login" class="form-control" required
-                           placeholder="{{__('auth.login.login')}}" value="{{old('login')}}">
+                    <input type="text" name="username" class="form-control" required
+                           placeholder="{{__('attributes.username')}}" value="{{old('username')}}">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fa fa-sign-in-alt"></span>
@@ -31,7 +31,7 @@
                 </div>
                 <div class="input-group mb-3">
                     <input type="password" class="form-control" name="password"
-                           placeholder="{{__('auth.login.password')}}" required>
+                           placeholder="{{__('attributes.password')}}" required>
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -41,7 +41,7 @@
                 <x-show-errors/>
                 <button type="submit" class="btn btn-primary btn-block">
                     <i class="fa fa-lock"></i>
-                    {{__('auth.login.enter')}}
+                    {{__('auth.login')}}
                 </button>
             </form>
         </div>
