@@ -8,7 +8,7 @@ class ProductService extends BaseService
 {
     public function __construct(ProductRepository $repository)
     {
-        parent::__construct($repository->orderBy('id','desc'));
+        parent::__construct($repository);
     }
 
 }

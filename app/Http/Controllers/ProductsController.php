@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\LoggerEvent;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use App\Services\ProductService;
@@ -44,6 +45,7 @@ class ProductsController extends Controller
      */
     public function store(ProductRequest $request)
     {
+        event(new LoggerEvent());
         $this->service->create($request);
 
         return to_route('products.index');
@@ -79,6 +81,7 @@ class ProductsController extends Controller
      */
     public function update(ProductRequest $request, Product $product)
     {
+        event(new LoggerEvent());
         $this->service->update($product->id, $request);
 
         return to_route('products.index');
@@ -92,6 +95,7 @@ class ProductsController extends Controller
      */
     public function destroy(Product $product)
     {
+        event(new LoggerEvent());
         $this->service->delete($product->id);
 
         return to_route('products.index');
