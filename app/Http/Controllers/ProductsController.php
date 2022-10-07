@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use App\Services\ProductService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Prettus\Validator\Exceptions\ValidatorException;
 
 class ProductsController extends Controller
 {
@@ -23,74 +25,73 @@ class ProductsController extends Controller
         return view('products.index', compact('products'));
     }
 
+
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function create()
     {
-        //
+        return \view('products.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @param ProductRequest $request
      *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
+     * @throws ValidatorException
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+        $this->service->create($request);
+
+        return to_route('products.index');
     }
 
     /**
-     * Display the specified resource.
+     * @param Product $product
      *
-     * @param \App\Models\Product $product
-     *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function show(Product $product)
     {
-        //
+        return \view('products.show', compact('product'));
     }
 
+
     /**
-     * Show the form for editing the specified resource.
+     * @param Product $product
      *
-     * @param \App\Models\Product $product
-     *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function edit(Product $product)
     {
-        //
+        return \view('products.update', compact('product'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * @param ProductRequest $request
+     * @param Product $product
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Product $product
-     *
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
+     * @throws ValidatorException
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
-        //
+        $this->service->update($product->id, $request);
+
+        return to_route('products.index');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @param Product $product
      *
-     * @param \App\Models\Product $product
-     *
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
+     * @throws \Exception
      */
     public function destroy(Product $product)
     {
-        //
+        $this->service->delete($product->id);
+
+        return to_route('products.index');
     }
 }
