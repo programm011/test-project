@@ -2,10 +2,16 @@
 
 namespace App\Repositories;
 
+use App\Traits\RequestCriteriaRepository;
 use Prettus\Repository\Eloquent\BaseRepository;
 
 class ProductRepository extends BaseRepository
 {
+
+    use RequestCriteriaRepository;
+
+    protected $fieldSearchable = ['title'=>'like'];
+
     /**
      * @return string
      */
