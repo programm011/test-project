@@ -13,7 +13,10 @@ use Prettus\Validator\Exceptions\ValidatorException;
 
 class ProductsController extends Controller
 {
-    public function __construct(protected ProductService $service) { }
+    public function __construct(protected ProductService $service)
+    {
+        $this->authorizeResource(Product::class);
+    }
 
     /**
      * @return Application|Factory|View
@@ -24,7 +27,6 @@ class ProductsController extends Controller
 
         return view('products.index', compact('products'));
     }
-
 
     /**
      * @return Application|Factory|View
