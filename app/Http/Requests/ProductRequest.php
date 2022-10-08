@@ -26,7 +26,7 @@ class ProductRequest extends FormRequest
         return [
             'title'   => 'required|string|max:255',
             'quantiy' => 'required|numeric',
-            'price'   => 'required|between:0,9999.99',
+            'price'   => 'required|between:0,9999.99', //todo
         ];
     }
 }
